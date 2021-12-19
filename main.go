@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/joho/godotenv"
 
@@ -23,8 +24,13 @@ func main() {
 
 	rtr := router.New(auth)
 
-	log.Print("Server listening on http://localhost:3000/")
-	if err := http.ListenAndServe("0.0.0.0:3000", rtr); err != nil {
+	port, ok := os.LookupEnv("PORT")
+  if ok == false {
+    port = "3000"
+  }
+
+	log.Print("Server listening on http://localhost:"+port)
+	if err := http.ListenAndServe("0.0.0.0:" + port, rtr); err != nil {
 		log.Fatalf("There was an error with the http server: %v", err)
 	}
 }
