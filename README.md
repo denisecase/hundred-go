@@ -88,9 +88,7 @@ Open browser to [http://localhost:3000/](http://localhost:3000/).
 
 ## Initial New Project Creation
 
-Create repo in GitHub cloud with no files. 
-
-On local machine, open Git Bash in project folder (e.g., hundred-go):
+Create repo in GitHub cloud with no files. On local machine, open Git Bash in project folder (e.g., hundred-go):
 
 ```Bash
 git init
@@ -102,6 +100,12 @@ git push -u origin main
 ```
 
 Then, run `heroku login` to set up your app in Heroku. Settings / Config Vars / Reveal / add each variable from your .env file. 
+
+## Create Favicon
+
+Go to <https://favicon.io/favicon-generator/>. 
+Create favicon (e.g., Text = 100, circle, Titan One, Regular 400 Normal, 60pt).
+Extract to web/static/image/favicon_io folder.
 
 ## Resources
 
