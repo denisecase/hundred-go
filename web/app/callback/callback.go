@@ -2,10 +2,8 @@ package callback
 
 import (
 	"net/http"
-
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
-
 	"hundred-go/platform/authenticator"
 )
 

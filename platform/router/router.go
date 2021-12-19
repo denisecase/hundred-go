@@ -2,11 +2,9 @@ package router
 
 import (
 	"encoding/gob"
-
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
-
 	"hundred-go/platform/authenticator"
 	"hundred-go/platform/middleware"
 	"hundred-go/web/app/callback"
@@ -17,6 +15,7 @@ import (
 )
 
 // New registers the routes and returns the router.
+// Uses Gin Web Framework https://gin-gonic.com/
 func New(auth *authenticator.Authenticator) *gin.Engine {
 	router := gin.Default()
 
@@ -30,6 +29,7 @@ func New(auth *authenticator.Authenticator) *gin.Engine {
 	router.Static("/public", "web/static")
 	router.LoadHTMLGlob("web/template/*")
 
+	// Assign route handlers - imported above
 	router.GET("/", home.Handler)
 	router.GET("/login", login.Handler(auth))
 	router.GET("/callback", callback.Handler(auth))

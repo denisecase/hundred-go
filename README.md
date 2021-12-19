@@ -107,6 +107,14 @@ Go to <https://favicon.io/favicon-generator/>.
 Create favicon (e.g., Text = 100, circle, Titan One, Regular 400 Normal, 60pt).
 Extract to web/static/image/favicon_io folder.
 
+## Periodically Update Go & Dependencies
+
+```PowerShell
+go get -u
+go mod tidy
+```
+In Go 1.17+, go.mod has a second require block for indirect dependencies.
+
 ## Resources
 
 - [Auth0](https://auth0.com)

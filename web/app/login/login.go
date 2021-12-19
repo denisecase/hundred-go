@@ -4,10 +4,8 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"net/http"
-
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
-
 	"hundred-go/platform/authenticator"
 )
 
@@ -27,7 +25,6 @@ func Handler(auth *authenticator.Authenticator) gin.HandlerFunc {
 			ctx.String(http.StatusInternalServerError, err.Error())
 			return
 		}
-
 		ctx.Redirect(http.StatusTemporaryRedirect, auth.AuthCodeURL(state))
 	}
 }
@@ -38,8 +35,6 @@ func generateRandomState() (string, error) {
 	if err != nil {
 		return "", err
 	}
-
 	state := base64.StdEncoding.EncodeToString(b)
-
 	return state, nil
 }

@@ -4,12 +4,12 @@ import (
 	"context"
 	"errors"
 	"os"
-
 	"github.com/coreos/go-oidc/v3/oidc"
 	"golang.org/x/oauth2"
 )
 
 // Authenticator is used to authenticate our users.
+// OpenID Connect (OIDC) is an identity layer built on top of the OAuth 2.0 framework.
 type Authenticator struct {
 	*oidc.Provider
 	oauth2.Config
