@@ -2,3 +2,5 @@
 .DS_Store
 src/
 pkg/
+.docker_build/
+bin/
