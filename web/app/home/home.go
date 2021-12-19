@@ -8,5 +8,5 @@ import (
 
 // Handler for our home page.
 func Handler(ctx *gin.Context) {
-	ctx.HTML(http.StatusOK, "home.html", nil)
+	ctx.HTML(http.StatusOK, "simple.html", nil)
 }
