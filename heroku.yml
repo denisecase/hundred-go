@@ -3,6 +3,7 @@
 build:
   languages:
     - go
+  docker:
+    web: Dockerfile
 
-run:
-  web: ./exec.sh
+
