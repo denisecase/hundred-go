@@ -23,7 +23,10 @@ It offers options for a wide variety of server-side platforms including Java, .N
 
 To try Auth0, go to [Auth0](https://auth0.com/) and Sign Up.
 You can create Apps and APIs. 
-For this, I'll create "Hundred Go" App and "Hundred Go API" API. 
+For this, I'll create "Hundred Go" Regular Wed App (views are generated server-side rather than a SPA). 
+"Token Endpoint Authentication Method" = Basic sends client secret via the header.
+"Token Endpoint Authentication Method" = Post sends client secret via the payload. 
+We'll use Basic. 
 
 ## App Focus
 
@@ -41,8 +44,11 @@ For this app, we'll create a "Regular Web App"/ Go and use the following endpoin
 - <https://hundred-go.herokuapp.com/home>
 - <https://hundred-go.herokuapp.com/login>
 - <https://hundred-go.herokuapp.com/logout>
-- <https://hundred-go.herokuapp.com/returnTo>
 - <https://hundred-go.herokuapp.com/user>
+
+Allowed Logout URLs:
+
+- <https://hundred-go.herokuapp.com/>
 
 Allowed web origins:
 
