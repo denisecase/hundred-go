@@ -2,6 +2,7 @@ package callback
 
 import (
 	"net/http"
+	"log"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"hundred-go/platform/authenticator"
@@ -10,7 +11,9 @@ import (
 // Handler for our callback.
 func Handler(auth *authenticator.Authenticator) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
+		log.Print("CALLBACK HANDLER: starting")
 		session := sessions.Default(ctx)
+
 		if ctx.Query("state") != session.Get("state") {
 			ctx.String(http.StatusBadRequest, "Invalid state parameter.")
 			return
@@ -43,6 +46,7 @@ func Handler(auth *authenticator.Authenticator) gin.HandlerFunc {
 		}
 
 		// Redirect to logged in page.
+		log.Print("CALLBACK HANDLER: redirecting to /user")
 		ctx.Redirect(http.StatusTemporaryRedirect, "/user")
 	}
 }
