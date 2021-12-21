@@ -28,6 +28,7 @@ help:
 	@echo "  See Makefile to find more targets.                  "
 	@echo "     Run Go commands with:                          "
 	@echo "        make download-deps                                    "
+	@echo "        make download-deps-vendor                                    "
 	@echo "        make vet                                    "
 	@echo "        make build                                   "
 	@echo "        make test                                   "
@@ -40,6 +41,9 @@ help:
 
 download-deps:
 	go mod download
+
+download-deps-vendor:
+	go mod vendor
 
 vet:
 	go vet

@@ -4,3 +4,4 @@ src/
 pkg/
 .docker_build/
 bin/
+tmp/

@@ -27,7 +27,7 @@ func New(auth *authenticator.Authenticator) *gin.Engine {
 	router.Use(sessions.Sessions("auth-session", store))
 
 	router.Static("/public", "web/static")
-	router.LoadHTMLGlob("web/template/*")
+	router.LoadHTMLGlob("web/template/*",)
 
 	// Assign route handlers - imported above
 	router.GET("/", home.Handler)

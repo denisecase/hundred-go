@@ -71,26 +71,18 @@ To do so, follow the instructions at [Auth0 - GitHub Social Connection](https://
 - Callback: <https://hundred-go.herokuapp.com/login/callback>
 - Note use of login/callback, not just callback. 
 
-## Running the App
+## Run the App Locally (Quick Test)
 
-To run the app, have go (golang) installed.
+To do a quick test, run the app locally. 
 
-Copy the `.env.example` file to `.env` and provide your Auth0 credentials from your App (e.g. Hundred Go).
-
-```bash
-# .env
-
-AUTH0_CLIENT_ID={CLIENT_ID}
-AUTH0_DOMAIN={DOMAIN}
-AUTH0_CLIENT_SECRET={CLIENT_SECRET}
-AUTH0_CALLBACK_URL=https://hundred-go.herokuapp.com/callback
-```
-
-After editing .env, run `go mod vendor` to download Go dependencies.
-
-Run `go run main.go` to start the app. If needed, click Allow Access.
+- Install Go (aka Golang) on your machine.
+- Copy the `.env.example` file to `.env` and provide your Auth0 credentials from your App (e.g. Hundred Go).
+- Run `go mod vendor` to create vendor directory with copies of all packages needed
+- Run `go run main.go` to start the app. If needed, click Allow Access.
 
 Open browser to [http://localhost:3000/](http://localhost:3000/).
+
+The command `go mod download` is similar to `go mod vendor`, but it  downloads named modules into the module cache. We want local copies in the vendor directory. 
 
 ## Make/Makefile - Simplify Common Commands
 
@@ -128,7 +120,7 @@ Go to <https://favicon.io/favicon-generator/>.
 Create favicon (e.g., Text = 100, circle, Titan One, Regular 400 Normal, 60pt).
 Extract to web/static/image/favicon_io folder.
 
-## Go on Windows
+## Installing Go on Windows
 
 - Go installs to $GOROOT, which is C:\Program Files\Go. See bin, docs, and more.  
 - User $GOPATH is C:\Users\username\go. See the bin folder as you install things like the linter. 
@@ -154,6 +146,57 @@ go mod tidy
 ```
 In Go 1.17+, go.mod has a second require block for indirect dependencies.
 
+## Optional: Dockerize the App
+
+We can run the app locally using Go. 
+We can deploy to Heroku and run using Procfile and the Go build kit. 
+We can also prepare our app to run in a Docker container 
+
+To Dockerize the app:
+
+- Create a Dockerfile
+- On Windows, in VS Code, change CRLF to LF (see line endings discussion elsewhere).
+- Use a multistage build to keep the final image smaller. 
+- See the Dockerfile and references for more information about this file.
+- Use the Dockerfile to build the docker image and then run it using either exec.ps1 (on Windows) or exec.sh (on Bash).
+
+```PowerShell
+.\exec.ps1
+```
+
+Monitor local Docker by opening Docker Desktop and watching in the GUI environment. See:
+
+- Containers/Apps  / click one / Run
+- Images / click one / Inspect / Run
+- Volumes
+- Dev Environments 
+
+Or use the Docker CLI. Use `docker --ps` to list images (should include hundred-go), run an image (e.g., `docker run hundred-go`), and view the running 
+
+```PowerShell
+docker version
+docker --help
+docker --config
+docker image ls 
+docker image inspect hundred-go
+docker run hundred-go
+docker ps
+docker ps -all
+```
+
+For debugging (if an image doesn't start):
+
+```PowerShell
+docker create hundred-go  (returns the <container ID>)
+docker cp <container ID>:./ ./tmp
+docker rm <container ID>
+```
+
+If the image builds, but gives an error on trying to `docker run` that says exec user process caused: no such file or directory. In VS Code, change line endings at the bottom of the page from CRFL to LF. 
+
+For reference, on Windows, docker keeps information at:
+- C:\Users\<username>\.docker (client config info)
+
 ## Resources
 
 - [Auth0](https://auth0.com)
@@ -164,6 +207,9 @@ In Go 1.17+, go.mod has a second require block for indirect dependencies.
 - [Makefiles with Go](https://golangdocs.com/makefiles-golang)
 - [Make clean fails in Windows](https://stackoverflow.com/questions/49384301/make-clean-failed-in-windows)
 - [Go Linting](https://golangci-lint.run/)
+- [Dockerize Go App](https://docs.docker.com/language/golang/build-images/)
+- [Docker build command](https://docs.docker.com/engine/reference/commandline/build/)
+- [Docker run command](https://docs.docker.com/engine/reference/commandline/run/)
 
 ## License
 
