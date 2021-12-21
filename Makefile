@@ -27,13 +27,18 @@ help:
 	@echo "  Run `make help` to run this target.                 "
 	@echo "  See Makefile to find more targets.                  "
 	@echo "     Run Go commands with:                          "
-	@echo "        make dep                                    "
+	@echo "        make download-deps                                    "
 	@echo "        make vet                                    "
-	@echo "        make lint                                   "
+	@echo "        make build                                   "
+	@echo "        make test                                   "
+	@echo "        make run                                   "
+	@echo "        make clean                                   "
+	@echo "        make all                                   "
+	@echo "        make update-deps                                    "
 	@echo "  It may include commands to Dockerize the app.     "
 	@echo "===================================================="
 
-dep:
+download-deps:
 	go mod download
 
 vet:
@@ -56,3 +61,7 @@ clean:
 	-$(RM) bin
 
 all: build test
+
+update-deps:
+	go get -u
+	go mod tidy

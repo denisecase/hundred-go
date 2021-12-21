@@ -128,6 +128,24 @@ Go to <https://favicon.io/favicon-generator/>.
 Create favicon (e.g., Text = 100, circle, Titan One, Regular 400 Normal, 60pt).
 Extract to web/static/image/favicon_io folder.
 
+## Go on Windows
+
+- Go installs to $GOROOT, which is C:\Program Files\Go. See bin, docs, and more.  
+- User $GOPATH is C:\Users\username\go. See the bin folder as you install things like the linter. 
+
+## Go Linting
+
+We'll use golangci-lint. Don't fetch it with go get, instead, run the following in Git Bash.
+This will install the binary to $GOPATH/bin/golangci-lint. Use Edit System Environment variables to explicitly set $GOPATH and $GOPATH\bin to your path. 
+
+```
+curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.43.0
+
+golangci-lint --version
+```
+
+Once installed, it can be invoked from PowerShell. DOS/Windows ends text lines with uses carriage return and line feed ("\r\n") while Linux-based systems use just line feed ("\n"). When auto-formatting code edited on different operating systems, you'll want to avoid switching back and forth. To ensure line endings for Windows builds are properly formatted, add .gitattributes file with: `*.go text eol=lf`.
+
 ## Periodically Update Go & Dependencies
 
 ```PowerShell
@@ -145,6 +163,7 @@ In Go 1.17+, go.mod has a second require block for indirect dependencies.
 - [GNU Make Manual](https://www.gnu.org/software/make/manual/)
 - [Makefiles with Go](https://golangdocs.com/makefiles-golang)
 - [Make clean fails in Windows](https://stackoverflow.com/questions/49384301/make-clean-failed-in-windows)
+- [Go Linting](https://golangci-lint.run/)
 
 ## License
 
