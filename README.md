@@ -92,6 +92,21 @@ Run `go run main.go` to start the app. If needed, click Allow Access.
 
 Open browser to [http://localhost:3000/](http://localhost:3000/).
 
+## Make/Makefile - Simplify Common Commands
+
+See the Makefile in the repo. 
+Using make allows us to write complicated commands once and then call them by executing a Make target. 
+When creating new make targets use a TAB - not spaces. 
+
+Open PowerShell as Admin, install Make, add it to your path, and exit PS.  
+
+- `winget install GnuWin32.Make`
+- Win Start Key / Edit the System Environment Variables / Environment Variables / Sytem Variables / Path / Edit / New & add an entry for `C:\Program Files (x86)\GnuWin32\bin` / OK / OK to exit.
+- `refreshenv`
+
+Open a new PowerShell as Admin and run the echo target from the Makefile (in this root project folder):
+- `make help`
+
 ## Initial New Project Creation
 
 Create repo in GitHub cloud with no files. On local machine, open Git Bash in project folder (e.g., hundred-go):
@@ -126,6 +141,10 @@ In Go 1.17+, go.mod has a second require block for indirect dependencies.
 - [Auth0](https://auth0.com)
 - [Auth0 Golang Web App](https://github.com/auth0-samples/auth0-golang-web-app)
 - [Auth0 Go Quickstart](https://auth0.com/docs/quickstart/webapp/golang)
+- [Install Make on Windows](https://www.technewstoday.com/install-and-use-make-in-windows/)
+- [GNU Make Manual](https://www.gnu.org/software/make/manual/)
+- [Makefiles with Go](https://golangdocs.com/makefiles-golang)
+- [Make clean fails in Windows](https://stackoverflow.com/questions/49384301/make-clean-failed-in-windows)
 
 ## License
 

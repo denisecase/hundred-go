@@ -11,13 +11,13 @@ import (
 
 func main() {
 	if err := godotenv.Load(); err != nil {
-		log.Print("Failed to load the env vars: %v", err)
+		log.Print("Failed to load the env vars: " + err.Error())
 		log.Print("Will retrieve info from environment configuration variables.")
 	}
 
 	auth, err := authenticator.New()
 	if err != nil {
-		log.Fatalf("Failed to initialize the authenticator: %v", err)
+		log.Fatalf("Failed to initialize the authenticator: " + err.Error())
 	}
 
 	rtr := router.New(auth)
@@ -29,6 +29,6 @@ func main() {
 
 	log.Print("Server listening on http://localhost:" + port)
 	if err := http.ListenAndServe("0.0.0.0:"+port, rtr); err != nil {
-		log.Fatalf("There was an error with the http server: %v", err)
+		log.Fatalf("There was an error with the http server: " + err.Error())
 	}
 }

@@ -1,13 +1,58 @@
-GO_BUILD_ENV := CGO_ENABLED=0 GOOS=linux GOARCH=amd64
-DOCKER_BUILD=$(shell pwd)/.docker_build
-DOCKER_CMD=$(DOCKER_BUILD)/hundred-go
+# You must have GNU Make installed. 
+# To run a target, run make <targetname>, e.g., make echo
+# IMPORTANT: Use tabs not spaces to indent.
+# @ means "don't print the command - just the results"
 
-$(DOCKER_CMD): clean
-	mkdir -p $(DOCKER_BUILD)
-	$(GO_BUILD_ENV) go build -v -o $(DOCKER_CMD) .
+# Some Boilerplate for Makefile to work in Windows or Bash
+
+ifeq ($(OS),Windows_NT) 
+RM = del /Q /F
+CP = copy /Y
+ifdef ComSpec
+SHELL := $(ComSpec)
+endif
+ifdef COMSPEC
+SHELL := $(COMSPEC)
+endif
+else
+RM = rm -rf
+CP = cp -f
+endif
+
+BINARY_NAME=bin/hundred-go
+
+help:
+	@echo "======================================================"
+	@echo "  A Makefile has targets (short aliases for commands)."
+	@echo "  Run `make help` to run this target.                 "
+	@echo "  See Makefile to find more targets.                  "
+	@echo "     Run Go commands with:                          "
+	@echo "        make dep                                    "
+	@echo "        make vet                                    "
+	@echo "        make lint                                   "
+	@echo "  It may include commands to Dockerize the app.     "
+	@echo "===================================================="
+
+dep:
+	go mod download
+
+vet:
+	go vet
+
+lint:
+	golangci-lint run --enable-all
+
+build:
+	go build -o ${BINARY_NAME}
+
+test:
+	go test -v main.go
+
+run: build
+	./${BINARY_NAME}
 
 clean:
-	rm -rf $(DOCKER_BUILD)
+	go clean
+	-$(RM) bin
 
-heroku: $(DOCKER_CMD)
-	heroku container:push web
+all: build test
