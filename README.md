@@ -146,11 +146,22 @@ go mod tidy
 ```
 In Go 1.17+, go.mod has a second require block for indirect dependencies.
 
+-----
+
 ## Optional: Dockerize the App
 
-We can run the app locally using Go. 
-We can deploy to Heroku and run using Procfile and the Go build kit. 
-We can also prepare our app to run in a Docker container 
+Ways to run the app:
+
+- We can run the app locally using Go. 
+- We can deploy to Heroku and run using Procfile and the Go build kit. 
+- We can also prepare our app to run in a Docker container. 
+
+This section covers the third option. 
+
+On Windows, Docker uses WSL2 (Windows Subsystem for Linux) and can take up to 95% of your RAM - without running any containers. 
+Proceed with caution. I installed WSL2 with Ubuntu. Recommended: open WSL by running `ubuntu` in PowerShell. Once in, get an updated list of current versions with `sudo apt-get update` then upgrade the packages with `sudo apt-get upgrade`.
+
+```
 
 To Dockerize the app:
 
@@ -196,6 +207,8 @@ If the image builds, but gives an error on trying to `docker run` that says exec
 
 For reference, on Windows, docker keeps information at:
 - C:\Users\<username>\.docker (client config info)
+
+-----
 
 ## Resources
 

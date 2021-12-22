@@ -34,7 +34,10 @@ FROM alpine:3.15
 WORKDIR /
 COPY --from=build_base /app/docker-hundred-go /docker-hundred-go
 
-# Expose port 3000 for our web app binary to the world
+# Copy above only copies binary. Explictly copy .env
+COPY .env /
+
+# Expose port 8080 for our web app binary to the world
 EXPOSE 3000
 
 #  tell Docker what command to execute when image starts a container
